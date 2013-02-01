@@ -1,4 +1,14 @@
 *.class
+.idea
+*.iml
+*.ipr
+*.iws
+*.bak
+staging
+target
+.classpath
+.project
+dist
 
 # Package Files #
 *.jar
