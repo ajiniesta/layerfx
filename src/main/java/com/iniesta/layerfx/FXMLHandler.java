@@ -36,6 +36,7 @@ public class FXMLHandler {
 	private Stage stage;
 	private boolean modalApplication;
 	private StageStyle stageStyle;
+	private HandlingView view;
 
 	public FXMLHandler(Class<?> clazz){
 		this(calculateFxmlFile(clazz));
@@ -65,10 +66,10 @@ public class FXMLHandler {
 	 */
 	@SuppressWarnings("static-access")
 	public HandlingView getHandlingView() throws IOException{
-		HandlingView view = null;
+		this.view = null;
 		FXMLLoader fxmlLoader = new FXMLLoader();
 		this.root = fxmlLoader.load(getClass().getResource(fxmlFile));
-		view = (HandlingView)fxmlLoader.getController();
+		this.view = (HandlingView)fxmlLoader.getController();
 		return view;
 	}
 	
@@ -99,6 +100,7 @@ public class FXMLHandler {
 		if(modalApplication){
 			this.stage.initModality(Modality.APPLICATION_MODAL);
 		}
+//		this.view.setStage(stage);
 		this.stage.setScene(new Scene(root));
 		this.stage.setTitle(title);
 		if(wait){
