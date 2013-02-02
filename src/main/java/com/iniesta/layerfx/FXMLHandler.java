@@ -21,7 +21,9 @@ import java.io.IOException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 /**
  * @author antonio
@@ -32,6 +34,8 @@ public class FXMLHandler {
 	private String fxmlFile;
 	private Parent root;
 	private Stage stage;
+	private boolean modalApplication;
+	private StageStyle stageStyle;
 
 	public FXMLHandler(Class<?> clazz){
 		this(calculateFxmlFile(clazz));
@@ -39,8 +43,20 @@ public class FXMLHandler {
 	
 	public FXMLHandler(String fxmlFile){
 		this.fxmlFile = fxmlFile;
+		this.stageStyle = StageStyle.DECORATED;
 	}
 
+	/**
+	 * Set the stage as APPLICATION_MODAL
+	 * @param isModal
+	 */
+	public void setModality(boolean isModal){
+		this.modalApplication = isModal;
+	}
+	
+	public void setStageStyle(StageStyle stageStyle){
+		this.stageStyle = stageStyle;
+	}
 	/**
 	 * Get the handling view
 	 * @return 
@@ -60,26 +76,29 @@ public class FXMLHandler {
 	 * Show window and keep with the execution
 	 */
 	public void showWindow(){
-		showWindow("",true);
+		showWindow("",false);
 	}
 	
 	public void showWindow(String title){
-		showWindow(title,true);
+		showWindow(title,false);
 	}
 	
 	/**
 	 * Show window and wait until the stage will be closed
 	 */
 	public void showWindowAndWait(){
-		showWindow("",false);
+		showWindow("",true);
 	}
 	
 	public void showWindowAndWait(String title){
-		showWindow(title,false);
+		showWindow(title,true);
 	}
 	
 	public void showWindow(String title, boolean wait){
-		this.stage = new Stage();
+		this.stage = new Stage(stageStyle);
+		if(modalApplication){
+			this.stage.initModality(Modality.APPLICATION_MODAL);
+		}
 		this.stage.setScene(new Scene(root));
 		this.stage.setTitle(title);
 		if(wait){
