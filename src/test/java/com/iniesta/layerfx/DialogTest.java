@@ -37,13 +37,16 @@ public class DialogTest extends Application{
 
 	@Override
 	public void start(Stage arg0) throws Exception {
-		Dialog.showAlert(Type.INFO, "This is a test!");
+//		Dialog.showAlert(Type.INFO, "This is a test!");
+//		
+//		boolean confirm = Dialog.showConfirm("Confirmation...");
+//		System.out.println("Confirm..."+confirm);
+//		
+//		String input = Dialog.showInputDialog(Input.PASSWORDFIELD, "Enter a password");
+//		System.out.println("Input: " + input);
 		
-		boolean confirm = Dialog.showConfirm("Confirmation...");
-		System.out.println("Confirm..."+confirm);
-		
-		String input = Dialog.showInputDialog(Input.PASSWORDFIELD, "Enter a password");
-		System.out.println("Input: " + input);
+		String field = Dialog.showInputDialog(Input.TEXTFIELD, "textfield...");
+		System.out.println(field);
 	}
 
 }

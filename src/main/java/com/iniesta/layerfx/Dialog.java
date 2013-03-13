@@ -253,7 +253,7 @@ public class Dialog extends Stage {
 	public static String showInputDialog(Input input, String prompt){
 		String str = null;
 		TextField inputNode = null;
-		if(Input.TEXTFIELD.equals(inputNode)){
+		if(Input.TEXTFIELD.equals(input)){
 			inputNode = new TextField();
 		}else{
 			inputNode = new PasswordField();
